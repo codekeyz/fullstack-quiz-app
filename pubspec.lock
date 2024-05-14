@@ -871,7 +871,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2f56c30c724977c88536f14559c8430dc9e36a5d"
+      resolved-ref: "4d656de408add9010dfc66381112e4fa1e96c5b0"
       url: "https://github.com/codekeyz/yaroorm.git"
     source: git
     version: "0.0.2"
