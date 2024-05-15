@@ -10,6 +10,8 @@ Execute migrations using this command
 $ dart run yaroorm migrate
 ```
 
+> Run `dart run yaroorm` in your terminal to see all available commands
+
 ### Start Server
 
 Run this command to start your Dart server.

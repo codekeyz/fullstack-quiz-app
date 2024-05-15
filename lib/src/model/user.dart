@@ -6,7 +6,7 @@ part 'user.g.dart';
 @JsonSerializable()
 @table
 class User extends Entity<User> {
-  @primaryKey
+  @autoIncrementPrimary
   final int id;
 
   final String username;
