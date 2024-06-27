@@ -2,6 +2,10 @@
 
 ## Getting Started
 
+### Generate code
+
+> `dart run build_runner build --delete-conflicting-outputs`
+
 ### Migrations
 
 Execute migrations using this command
