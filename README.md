@@ -34,5 +34,3 @@ Server listening on port 8080
 ### How To Use
 
 When you add a new Entity Model eg: `Post`, generate a migration using `dart run yaroorm create create_posts_table`.
-
-You can run `dart run yaroorm` to see available commands.
