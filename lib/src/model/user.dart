@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:quiz_app/src/model/post.dart';
 import 'package:yaroorm/yaroorm.dart';
 
 part 'user.g.dart';
@@ -21,6 +22,8 @@ class User extends Entity<User> {
     required this.email,
     required this.password,
   });
+
+  HasMany<User, Post> get posts => hasMany(#posts);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
