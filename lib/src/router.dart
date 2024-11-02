@@ -5,19 +5,19 @@ import 'dart:io';
 import 'package:bcrypt/bcrypt.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dotenv/dotenv.dart';
-import 'package:quiz_app/src/model/user.dart';
+import 'package:quiz_app/src/models.dart';
 import 'package:quiz_app/src/utils.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import 'package:yaroorm/yaroorm.dart';
 
-final env = DotEnv(includePlatformEnvironment: true)..load();
+final env = DotEnv(includePlatformEnvironment: true, quiet: true)..load();
 final _jwtSecret = SecretKey(env['JWT_SECRET']!);
 
 final router = Router()
   ..post('/login', _loginHandler)
   ..post('/register', _registerHandler)
-  ..get('/current-user', _getCurrentuser);
+  ..get('/me', _getCurrentuser);
 
 Future<Response> _getCurrentuser(Request req) async {
   // Check for presence of jwt token in request header
