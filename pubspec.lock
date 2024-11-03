@@ -854,10 +854,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "10169d3934549017f0ae278ccb07f828f9d6ea21573bab0fb77b0e1ef0fce454"
+      sha256: "84ba388638ed7a8cb3445a320c8273136ab2631cd5f2c57888335504ddab1bc2"
       url: "https://pub.dev"
     source: hosted
-    version: "5.7.2"
+    version: "5.8.0"
   yaml:
     dependency: transitive
     description:
@@ -869,11 +869,17 @@ packages:
   yaroorm:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: fec564dcbca6feee6ef8ae23a3bc4633c9b10b48
-      url: "https://github.com/codekeyz/yaroorm.git"
-    source: git
+      name: yaroorm
+      sha256: "72bdeab359fe63e11e90dbe5eb355ef6655a0777bf376e3c7d0e3ab1fc5d6fe6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
+  yaroorm_cli:
+    dependency: "direct dev"
+    description:
+      path: "../yaroorm/packages/yaroorm_cli"
+      relative: true
+    source: path
     version: "0.0.2"
 sdks:
   dart: ">=3.5.0 <4.0.0"
