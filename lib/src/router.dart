@@ -1,40 +1,25 @@
-// Configure routes.
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:bcrypt/bcrypt.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dotenv/dotenv.dart';
-import 'package:quiz_app/src/models.dart';
-import 'package:quiz_app/src/utils.dart';
+
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import 'package:yaroorm/yaroorm.dart';
 
+import 'package:quiz_app/src/models.dart';
+import 'package:quiz_app/src/utils.dart';
+
 final env = DotEnv(includePlatformEnvironment: true, quiet: true)..load();
 final _jwtSecret = SecretKey(env['JWT_SECRET']!);
 
+// Configure routes.
 final router = Router()
   ..post('/login', _loginHandler)
   ..post('/register', _registerHandler)
   ..get('/me', _getCurrentuser);
-
-Future<Response> _getCurrentuser(Request req) async {
-  // Check for presence of jwt token in request header
-  final jwtToken =
-      req.headers[HttpHeaders.authorizationHeader]?.split(' ').lastOrNull;
-  if (jwtToken == null) {
-    return Response.unauthorized('Not Authorized');
-  }
-
-  // Verify JWT Token
-  final jwtVerified = JWT.tryVerify(jwtToken, _jwtSecret);
-  if (jwtVerified == null) {
-    return Response.unauthorized('Not Authorized');
-  }
-
-  return Response.ok(jsonEncode({'user': jwtVerified.payload}));
-}
 
 Future<Response> _loginHandler(Request req) async {
   final requestBody = Map<String, dynamic>.from(
@@ -105,4 +90,21 @@ Future<Response> _registerHandler(Request req) async {
   ));
 
   return Response.ok(jsonEncode({'user': user.toJson()}));
+}
+
+Future<Response> _getCurrentuser(Request req) async {
+  // Check for presence of jwt token in request header
+  final jwtToken =
+      req.headers[HttpHeaders.authorizationHeader]?.split(' ').lastOrNull;
+  if (jwtToken == null) {
+    return Response.unauthorized('Not Authorized');
+  }
+
+  // Verify JWT Token
+  final jwtVerified = JWT.tryVerify(jwtToken, _jwtSecret);
+  if (jwtVerified == null) {
+    return Response.unauthorized('Not Authorized');
+  }
+
+  return Response.ok(jsonEncode({'user': jwtVerified.payload}));
 }
